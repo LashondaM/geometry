@@ -11,15 +11,22 @@ function init(){
 
     document.body.appendChild( renderer.domElement );
 
-    const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
+    const geometry = new THREE.CylinderGeometry( 5, 5, 20, 32 );
     // const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
 
     const texture = new THREE.TextureLoader().load('textures/FloorsCheckerboard_S_Normal.jpg')
-    const material = new THREE.MeshBasicMaterial( { map: texture } );
+    const material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
     torus = new THREE.Mesh( geometry, material );
     scene.add( torus );
+    console.log(geometry.verticles);
 
-    camera.position.z = 55;
+    // const directionalLight = new THREE.DirectionalLight( 0xffffff, 1.2 );
+    // directionalLight.position.x = 3;
+    // directionalLight.position.y = 4;
+    // directionalLight.position.z = 4;
+    // scene.add( directionalLight );
+
+    camera.position.z = 30;
 
 }
 
@@ -28,6 +35,7 @@ const animate = function () {
 
 	torus.rotation.x += 0.05;
 	torus.rotation.y += 0.05;
+	torus.rotation.z += 0.05;
 
 	renderer.render( scene, camera );
 	};
@@ -43,7 +51,7 @@ const animate = function () {
     init();
 	animate();
 
-    
+
 // let scene, camera, renderer, torus;
 
 // function init(){
